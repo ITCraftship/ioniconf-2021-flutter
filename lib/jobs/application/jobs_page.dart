@@ -43,10 +43,10 @@ class _JobsPageState extends State<JobsPage> {
   Widget _builder(BuildContext context, JobsState state) => AnimatedSwitcher(
         duration: _changeStateDuration,
         child: state.maybeMap(
-          showLoading: (_) => const CupertinoActivityIndicator(),
+          showLoading: (_) => Center(child: const CupertinoActivityIndicator()),
           showError: (state) => _error(state.error),
           showView: (state) => _buildResponsiveBuilder(context, state),
-          orElse: () => const SizedBox(),
+          orElse: () => _error("Something went wrong!"),
         ),
       );
 
@@ -54,9 +54,9 @@ class _JobsPageState extends State<JobsPage> {
     return ResponsiveBuilder(
       builder: (BuildContext context, SizingInformation sizingInformation) {
         return GridView.builder(
-            itemCount: state.jobList?.length,
+            itemCount: state.jobList.length,
             gridDelegate: CustomSliverGridDelegate(
-              height: 390,
+              height: 395,
               crossAxisCount: (sizingInformation.deviceScreenType ==
                           DeviceScreenType.mobile ||
                       sizingInformation.deviceScreenType ==
@@ -68,7 +68,7 @@ class _JobsPageState extends State<JobsPage> {
             ),
             itemBuilder: (context, index) {
               return JobsCardWidget(
-                job: state.jobList!.elementAt(index),
+                job: state.jobList.elementAt(index),
               );
             });
       },

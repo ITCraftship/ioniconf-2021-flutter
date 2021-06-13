@@ -6,5 +6,5 @@ abstract class JobsState with _$JobsState {
 
   const factory JobsState.showError({required String error}) = ShowError;
 
-  const factory JobsState.showView({List<Job>? jobList}) = ShowView;
+  const factory JobsState.showView({required List<Job> jobList}) = ShowView;
 }

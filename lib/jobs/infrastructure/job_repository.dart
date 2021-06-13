@@ -5,10 +5,11 @@ import 'package:ioniconf_2021_flutter/models/job/job.dart';
 
 @singleton
 class JobsRepository {
-  Future<List<Job>> getJobs() async {
+  Future<List<Job>> getJobs({int? pageNumber}) async {
     try {
       /// TODO: Handle Error states
-      final List<Job> jobs = await NetworkManager.instance.getJobList();
+      final List<Job> jobs =
+          await NetworkManager.instance.getJobList(page: pageNumber.toString());
       return jobs;
     } catch (_) {
       return [];

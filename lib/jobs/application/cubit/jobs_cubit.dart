@@ -17,7 +17,7 @@ class JobsCubit extends Cubit<JobsState> {
 
   Future<void> initialize() async {
     try {
-      _jobList = await _jobsRepository.getJobs();
+      _jobList = await _jobsRepository.getJobs(pageNumber: 1);
       if (_jobList.length == 0)
         _buildError("Empty Elements");
       else
