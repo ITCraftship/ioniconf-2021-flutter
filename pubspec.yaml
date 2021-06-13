@@ -35,10 +35,16 @@ dev_dependencies:
   # Dependency Injection
   injectable_generator: 1.4.1
   # Network
-  # retrofit_generator: 2.0.0+1
   json_serializable: 4.1.3
 
 flutter:
+
   uses-material-design: true
+
   assets:
+    - assets/
+    - assets/date.png
+    - assets/shift.png
+    - assets/diem.png
     - config/
+  
