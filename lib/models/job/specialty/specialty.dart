@@ -7,10 +7,10 @@ part 'specialty.g.dart';
 class Specialty with _$Specialty {
   factory Specialty({
     @JsonKey(name: 'specialty_id') int? specialtyId,
-    @JsonKey(name: 'specialty_acronym') String? specialtyAcronym,
-    @JsonKey(name: 'specialty_title') String? specialtyTitle,
+    @Default("") @JsonKey(name: 'specialty_acronym') String specialtyAcronym,
+    @Default("") @JsonKey(name: 'specialty_title') String specialtyTitle,
     @JsonKey(name: 'specialty_desc') String? specialtyDesc,
-    @JsonKey(name: 'specialty_color') String? specialtyColor,
+    @Default("") @JsonKey(name: 'specialty_color') String specialtyColor,
     @JsonKey(name: 'specialty_meta_description')
         Object? specialtyMetaDescription,
     @JsonKey(name: 'insert_date') String? insertDate,

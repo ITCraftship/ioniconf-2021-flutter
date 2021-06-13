@@ -30,7 +30,6 @@ class NetworkManager {
   Future<List<Job>> getJobList({String page = "1"}) async {
     http.Response _response =
         await doGet(url: _baseURL + Endpoints.jobs + '?page=' + page);
-    Map<String, dynamic> _body = Map<String, dynamic>();
     List<Job> _jobList = [];
     try {
       var _list = jsonDecode(_response.body) as List;

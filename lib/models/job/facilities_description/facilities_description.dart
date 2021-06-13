@@ -6,9 +6,9 @@ part 'facilities_description.g.dart';
 @freezed
 class FacilitiesDescription with _$FacilitiesDescription {
   factory FacilitiesDescription({
-    @JsonKey(name: 'state_abbreviation') String? stateAbbreviation,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'insert_date') String? insertDate,
+    @Default("") @JsonKey(name: 'state_abbreviation') String stateAbbreviation,
+    @Default("") @JsonKey(name: 'description') String description,
+    @Default("") @JsonKey(name: 'insert_date') String insertDate,
   }) = _FacilitiesDescription;
 
   factory FacilitiesDescription.fromJson(Map<String, dynamic> json) =>
