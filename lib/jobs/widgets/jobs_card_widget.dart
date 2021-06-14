@@ -25,13 +25,7 @@ class JobsCardWidget extends StatelessWidget {
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(_radius),
-          boxShadow: [
-            BoxShadow(
-                offset: Offset(0.5, 0.5),
-                color: Colors.grey,
-                spreadRadius: 0.01,
-                blurRadius: 5)
-          ]),
+          boxShadow: [BoxShadow(offset: Offset(0.5, 0.5), color: Colors.grey, spreadRadius: 0.01, blurRadius: 5)]),
       child: Stack(
         children: [
           Column(
@@ -64,9 +58,7 @@ class JobsCardWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
-                    child: Center(
-                        child: Text("More Details",
-                            style: TextStyle(color: _topImageOverlayColor))),
+                    child: Center(child: Text("More Details", style: TextStyle(color: _topImageOverlayColor))),
                   )
                 ],
               ))
@@ -84,28 +76,30 @@ class JobsCardWidget extends StatelessWidget {
             topLeft: _radius,
             topRight: _radius,
           ),
-          child: FadeInImage.memoryNetwork(
-            height: _topImageHeigth,
-            width: double.infinity,
-            placeholder: kTransparentImage,
-            image: job.facility!.imageUrl,
-            fit: BoxFit.cover,
-            imageErrorBuilder: (_, __, ___) => Icon(Icons.error),
+          child: Image(
+            image: AssetImage('assets/demo_facility.jpeg'),
+            height: 100,
           ),
+          // FadeInImage.memoryNetwork(
+          //   height: _topImageHeigth,
+          //   width: double.infinity,
+          //   placeholder: kTransparentImage,
+          //   image: job.facility!.imageUrl,
+          //   fit: BoxFit.cover,
+          //   imageErrorBuilder: (_, __, ___) => Icon(Icons.error),
+          // ),
         ),
         Container(
           height: _topImageHeigth,
           width: double.infinity,
           decoration: BoxDecoration(
             color: _topImageOverlayColor.withOpacity(0.5),
-            borderRadius:
-                const BorderRadius.only(topRight: _radius, topLeft: _radius),
+            borderRadius: const BorderRadius.only(topRight: _radius, topLeft: _radius),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 12, top: 12),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               "Estimated total amount",
               style: TextStyle(color: Colors.white, fontSize: 15),
@@ -132,12 +126,8 @@ class JobsCardWidget extends StatelessWidget {
       children: [
         BadgeWidget(
           text: job.jobStatus!.jobStatusText,
-          backgroundColor: job.jobStatus!.jobStatusText == "Open"
-              ? _statusBadgeAlternativeBackgroundColor
-              : _statusBadgeBackgroundColor,
-          textColor: job.jobStatus!.jobStatusText == "Open"
-              ? _statusBadgeAlternativeTextColor
-              : _statusBadgeTextColor,
+          backgroundColor: job.jobStatus!.jobStatusText == "Open" ? _statusBadgeAlternativeBackgroundColor : _statusBadgeBackgroundColor,
+          textColor: job.jobStatus!.jobStatusText == "Open" ? _statusBadgeAlternativeTextColor : _statusBadgeTextColor,
         ),
         SizedBox(width: 8),
         BadgeWidget(
@@ -151,21 +141,15 @@ class JobsCardWidget extends StatelessWidget {
 
   Widget _buildFacilityName() => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(
+      child: SelectableText(
         job.facility!.facName,
         style: TextStyle(fontSize: 17),
         maxLines: 2,
-        overflow: TextOverflow.ellipsis,
+        // overflow: TextOverflow.ellipsis,
       ));
 
   Widget _buildAddress() => Text(
-        (job.facility!.facStreetAddress) +
-            ", " +
-            (job.facility!.facCity) +
-            ", " +
-            (job.facility!.facStateAbbreviation) +
-            ", " +
-            (job.facility!.facZipCode),
+        (job.facility!.facStreetAddress) + ", " + (job.facility!.facCity) + ", " + (job.facility!.facStateAbbreviation) + ", " + (job.facility!.facZipCode),
         style: TextStyle(fontSize: 13, color: Colors.grey),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
@@ -177,25 +161,18 @@ class JobsCardWidget extends StatelessWidget {
       job.jobSpecialties!.forEach((jobSpecialty) {
         _jobSpecialties.add(BadgeWidget(
           text: jobSpecialty.specialty!.specialtyAcronym,
-          backgroundColor: Color(int.tryParse("0xFF" +
-              jobSpecialty.specialty!.specialtyColor.replaceAll("#", ""))!),
+          backgroundColor: Color(int.tryParse("0xFF" + jobSpecialty.specialty!.specialtyColor.replaceAll("#", ""))!),
         ));
         _jobSpecialties.add(SizedBox(width: 10));
       });
     } else {
-      Color _backgroundColor = Color(int.tryParse("0xFF" +
-          job.jobSpecialties!.first.specialty!.specialtyColor
-              .replaceAll("#", ""))!);
-      if (job.jobSpecialties!.first.specialty!.specialtyTitle ==
-          "Skilled Nursing") {
+      Color _backgroundColor = Color(int.tryParse("0xFF" + job.jobSpecialties!.first.specialty!.specialtyColor.replaceAll("#", ""))!);
+      if (job.jobSpecialties!.first.specialty!.specialtyTitle == "Skilled Nursing") {
         _backgroundColor = Color(0xFFBF4DD6);
-      } else if (job.jobSpecialties!.first.specialty!.specialtyTitle ==
-          "Long Term Care") {
+      } else if (job.jobSpecialties!.first.specialty!.specialtyTitle == "Long Term Care") {
         _backgroundColor = Color(0xFFF6A858);
       }
-      _jobSpecialties.add(BadgeWidget(
-          text: job.jobSpecialties!.first.specialty!.specialtyTitle,
-          backgroundColor: _backgroundColor));
+      _jobSpecialties.add(BadgeWidget(text: job.jobSpecialties!.first.specialty!.specialtyTitle, backgroundColor: _backgroundColor));
     }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -208,12 +185,9 @@ class JobsCardWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _iconWithInfo(Image(image: AssetImage('assets/diem.png'), height: 20),
-            "Per Diem"),
-        _iconWithInfo(Image(image: AssetImage('assets/date.png'), height: 20),
-            job.jobStartDate),
-        _iconWithInfo(Image(image: AssetImage('assets/shift.png'), height: 20),
-            job.jobShift),
+        _iconWithInfo(Image(image: AssetImage('assets/diem.png'), height: 20), "Per Diem"),
+        _iconWithInfo(Image(image: AssetImage('assets/date.png'), height: 20), job.jobStartDate),
+        _iconWithInfo(Image(image: AssetImage('assets/shift.png'), height: 20), job.jobShift),
       ],
     );
   }
@@ -222,11 +196,7 @@ class JobsCardWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        image,
-        SizedBox(height: 4),
-        Text(text, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300))
-      ],
+      children: [image, SizedBox(height: 4), Text(text, style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300))],
     );
   }
 }
