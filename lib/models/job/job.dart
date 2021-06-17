@@ -13,7 +13,7 @@ part 'job.g.dart';
 @freezed
 class Job with _$Job {
   factory Job({
-    @JsonKey(name: 'job_id') String? jobId,
+    @Default("") @JsonKey(name: 'job_id') String jobId,
     @JsonKey(name: 'job_title') Object? jobTitle,
     @JsonKey(name: 'job_board_job_id') Object? jobBoardJobId,
     @JsonKey(name: 'job_facility_id') String? jobFacilityId,

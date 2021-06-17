@@ -40,6 +40,19 @@ class NetworkManager {
     return _jobList;
   }
 
+  Future<Job> getJob({required String jobId}) async {
+    http.Response _response =
+        await doGet(url: _baseURL + Endpoints.jobs + "/" + jobId +  "/" + Endpoints.detail);
+    late Job _job;
+    try {
+      var _data = jsonDecode(_response.body);
+      _job = Job.fromJson(_data);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return _job;
+  }
+
   Future<http.Response> doGet(
       {required String url, Map<String, String>? queryParameters}) async {
     Map<String, String> header = {
@@ -53,7 +66,6 @@ class NetworkManager {
           .get(parsedUrl, headers: header)
           .timeout(Duration(seconds: _timeOutSeconds));
     } catch (e) {
-      /// TODO: ERROR HANDLER
       throw e;
     }
     return response;
