@@ -12,7 +12,6 @@ dependencies:
     sdk: flutter
   # Network
   http: 0.13.3
-  cached_network_image: 3.0.0
   transparent_image: 2.0.0
   # Union Class
   freezed_annotation: 0.14.1
@@ -24,6 +23,8 @@ dependencies:
   injectable: 1.4.1
   # Responsive
   responsive_builder: 0.4.1
+  # UI Elements
+  flutter_calendar_carousel: 2.0.1
 
 dev_dependencies:
   flutter_test:
