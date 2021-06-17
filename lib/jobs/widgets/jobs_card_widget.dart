@@ -1,76 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:ioniconf_2021_flutter/core/theme/colors.dart';
+import 'package:ioniconf_2021_flutter/jobs/application/job_details/widgets/network_image_widget.dart';
 import 'package:ioniconf_2021_flutter/jobs/widgets/badge_widget.dart';
 import 'package:ioniconf_2021_flutter/models/job/job.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 const double _topImageHeigth = 100;
-const Color _topImageOverlayColor = const Color(0xFF5924B0);
-const Color _licenceBadgeBackgroundColor = const Color(0xFFE0CBFF);
-const Color _licenceBadgeTextColor = const Color(0xFF5C29B4);
-const Color _statusBadgeBackgroundColor = const Color(0xFFC9DFFF);
-const Color _statusBadgeAlternativeBackgroundColor = const Color(0xFFD9FFD4);
-const Color _statusBadgeTextColor = const Color(0xFF01489B);
-const Color _statusBadgeAlternativeTextColor = const Color(0xFF016612);
-
 const Radius _radius = Radius.circular(8);
 
 class JobsCardWidget extends StatelessWidget {
   final Job job;
-  const JobsCardWidget({Key? key, required this.job}) : super(key: key);
+  final Function onTap;
+  const JobsCardWidget({Key? key, required this.job, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(_radius),
-          boxShadow: [
-            BoxShadow(
-                offset: Offset(0.5, 0.5),
-                color: Colors.grey,
-                spreadRadius: 0.01,
-                blurRadius: 5)
-          ]),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              _buildTopImage(),
-              Padding(
-                padding: const EdgeInsets.only(left: 16, top: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildStatusAndLicence(),
-                    _buildFacilityName(),
-                    _buildAddress(),
-                    _buildJobSpecialtyBadges(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Column(
-                children: [
-                  _buildJobTypeShiftDate(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: Divider(height: 1),
+    return GestureDetector(
+      onTap: () => onTap(),
+      child: Container(
+        margin: const EdgeInsets.all(16),
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(_radius),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0.5, 0.5),
+                  color: Colors.grey,
+                  spreadRadius: 0.01,
+                  blurRadius: 5)
+            ]),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                _buildTopImage(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16, top: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildStatusAndLicence(),
+                      _buildFacilityName(),
+                      _buildAddress(),
+                      _buildJobSpecialtyBadges(),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: Center(
-                        child: Text("More Details",
-                            style: TextStyle(color: _topImageOverlayColor))),
-                  )
-                ],
-              ))
-        ],
+                ),
+              ],
+            ),
+            Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Column(
+                  children: [
+                    _buildJobTypeShiftDate(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Divider(height: 1),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: Center(
+                          child: Text("More Details",
+                              style: TextStyle(
+                                  color: ThemeColors.topImageOverlayColor))),
+                    )
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
@@ -84,20 +83,17 @@ class JobsCardWidget extends StatelessWidget {
             topLeft: _radius,
             topRight: _radius,
           ),
-          child: FadeInImage.memoryNetwork(
+          child: NetworkImageWidget(
             height: _topImageHeigth,
-            width: double.infinity,
-            placeholder: kTransparentImage,
-            image: job.facility!.imageUrl,
-            fit: BoxFit.cover,
-            imageErrorBuilder: (_, __, ___) => Icon(Icons.error),
+            width: double.maxFinite,
+            imageUrl: job.facility!.imageUrl,
           ),
         ),
         Container(
           height: _topImageHeigth,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: _topImageOverlayColor.withOpacity(0.5),
+            color: ThemeColors.topImageOverlayColor.withOpacity(0.5),
             borderRadius:
                 const BorderRadius.only(topRight: _radius, topLeft: _radius),
           ),
@@ -133,17 +129,17 @@ class JobsCardWidget extends StatelessWidget {
         BadgeWidget(
           text: job.jobStatus!.jobStatusText,
           backgroundColor: job.jobStatus!.jobStatusText == "Open"
-              ? _statusBadgeAlternativeBackgroundColor
-              : _statusBadgeBackgroundColor,
+              ? ThemeColors.statusBadgeAlternativeBackgroundColor
+              : ThemeColors.statusBadgeBackgroundColor,
           textColor: job.jobStatus!.jobStatusText == "Open"
-              ? _statusBadgeAlternativeTextColor
-              : _statusBadgeTextColor,
+              ? ThemeColors.statusBadgeAlternativeTextColor
+              : ThemeColors.statusBadgeTextColor,
         ),
         SizedBox(width: 8),
         BadgeWidget(
           text: job.licenseType,
-          backgroundColor: _licenceBadgeBackgroundColor,
-          textColor: _licenceBadgeTextColor,
+          backgroundColor: ThemeColors.licenceBadgeBackgroundColor,
+          textColor: ThemeColors.licenceBadgeTextColor,
         ),
       ],
     );
