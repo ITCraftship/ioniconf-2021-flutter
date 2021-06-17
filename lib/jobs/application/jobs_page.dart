@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ioniconf_2021_flutter/core/injection/injection.dart';
 import 'package:ioniconf_2021_flutter/jobs/application/cubit/jobs_cubit.dart';
+import 'package:ioniconf_2021_flutter/jobs/application/job_details/job_details_page.dart';
 import 'package:ioniconf_2021_flutter/jobs/widgets/custom_sliver_grid_delegate.dart';
 import 'package:ioniconf_2021_flutter/jobs/widgets/jobs_card_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -44,9 +45,9 @@ class _JobsPageState extends State<JobsPage> {
         duration: _changeStateDuration,
         child: state.maybeMap(
           showLoading: (_) => Center(child: const CupertinoActivityIndicator()),
-          showError: (state) => _error(state.error),
+          showError: (state) => _buildError(state.error),
           showView: (state) => _buildResponsiveBuilder(context, state),
-          orElse: () => _error("Something went wrong!"),
+          orElse: () => _buildError("Something went wrong!"),
         ),
       );
 
@@ -68,12 +69,19 @@ class _JobsPageState extends State<JobsPage> {
             ),
             itemBuilder: (context, index) {
               return JobsCardWidget(
-                job: state.jobList.elementAt(index),
-              );
+                  job: state.jobList.elementAt(index),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => JobDetailsPage(
+                              job: state.jobList.elementAt(index))),
+                    );
+                  });
             });
       },
     );
   }
 
-  Widget _error(String message) => Center(child: Text(message));
+  Widget _buildError(String message) => Center(child: Text(message));
 }
