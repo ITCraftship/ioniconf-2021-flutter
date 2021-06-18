@@ -6,8 +6,23 @@
             "type": "dart",
             "request": "launch",
             "program": "lib/main.dart",
+            "flutterMode": "debug"
+        },
+        {
+            "name": "debug HTML",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
             "flutterMode": "debug",
             "args": ["--web-renderer=html"]
+        },
+        {
+            "name": "debug CanvasKit",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "flutterMode": "debug",
+            "args": ["--web-renderer=canvaskit"]
         },
         {
             "name": "profile",
