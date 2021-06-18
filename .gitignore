@@ -64,10 +64,6 @@ app.*.map.json
 .env
 lib/.env.dart
 
-# Secrets
-/config/*
-!/config/.gitkeep
-
 # auto-generated fastlane files
 fastlane/README.md
 fastlane/report.xml
