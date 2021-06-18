@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ioniconf_2021_flutter/core/config/config.dart';
 import 'package:ioniconf_2021_flutter/core/injection/injection.config.dart';
+import 'package:ioniconf_2021_flutter/core/networking/dio_example.dart';
 import 'package:ioniconf_2021_flutter/core/networking/network_manager.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -15,4 +17,7 @@ Future<void> configureInjection(String environment) async {
 abstract class RegisterModule {
   @Named(apiBaseUrl)
   String get baseUrl => getIt<Config>().apiUrl;
+
+  @lazySingleton
+  Dio dio(@Named(apiBaseUrl) String url) => configureDio(url);
 }

@@ -1,14 +1,18 @@
 import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:ioniconf_2021_flutter/core/networking/network_manager.dart';
+import 'package:ioniconf_2021_flutter/core/networking/retrofit_example.dart';
 import 'package:ioniconf_2021_flutter/models/job/job.dart';
 
 @singleton
 class JobsRepository {
+  final JobsApiDataSource _dataSource;
+
+  JobsRepository(this._dataSource);
+
   Future<List<Job>> getJobs({int? pageNumber}) async {
     try {
-      final List<Job> jobs =
-          await NetworkManager.instance.getJobList(page: pageNumber.toString());
+      final List<Job> jobs = await _dataSource.getJobs();
       return jobs;
     } catch (_) {
       return [];
