@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class CustomSliverGridDelegate
-    extends SliverGridDelegate {
+class CustomSliverGridDelegate extends SliverGridDelegate {
   /// Creates a delegate that makes grid layouts with a fixed number of tiles in
   /// the cross axis.
   ///
@@ -57,8 +56,7 @@ class CustomSliverGridDelegate
   }
 
   @override
-  bool shouldRelayout(
-      CustomSliverGridDelegate oldDelegate) {
+  bool shouldRelayout(CustomSliverGridDelegate oldDelegate) {
     return oldDelegate.crossAxisCount != crossAxisCount ||
         oldDelegate.mainAxisSpacing != mainAxisSpacing ||
         oldDelegate.crossAxisSpacing != crossAxisSpacing ||

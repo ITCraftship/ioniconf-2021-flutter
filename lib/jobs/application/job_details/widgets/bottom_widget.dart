@@ -18,8 +18,9 @@ class BottomWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.share_outlined, color: ThemeColors.toolBarColor ),
-              Text("ShiftShare™", style: TextStyle(color: ThemeColors.toolBarColor )),
+              Icon(Icons.share_outlined, color: ThemeColors.toolBarColor),
+              Text("ShiftShare™",
+                  style: TextStyle(color: ThemeColors.toolBarColor)),
             ],
           ),
           _buildVerticalDivider(),
@@ -27,8 +28,12 @@ class BottomWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.send_outlined, color: ThemeColors.toolBarColor ,),
-              Text("Request Job", style: TextStyle(color: ThemeColors.toolBarColor )),
+              Icon(
+                Icons.send_outlined,
+                color: ThemeColors.toolBarColor,
+              ),
+              Text("Request Job",
+                  style: TextStyle(color: ThemeColors.toolBarColor)),
             ],
           ),
         ],

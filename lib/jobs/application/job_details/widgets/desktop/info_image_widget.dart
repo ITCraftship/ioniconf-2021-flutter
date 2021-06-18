@@ -14,7 +14,7 @@ class InfoImageWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(height: 20),
-        Text(job.facility!.facName, style: TextStyle(fontSize: 28)),
+        Text(job.facility!.facName!, style: TextStyle(fontSize: 28)),
         SizedBox(height: 30),
         Stack(
           fit: StackFit.loose,
@@ -23,7 +23,7 @@ class InfoImageWidget extends StatelessWidget {
               child: NetworkImageWidget(
                 height: _width / 5,
                 width: _width / 3,
-                imageUrl: job.facility!.imageUrl,
+                imageUrl: job.facility!.imageUrl!,
               ),
             ),
             Padding(

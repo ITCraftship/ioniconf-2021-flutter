@@ -86,7 +86,7 @@ class JobsCardWidget extends StatelessWidget {
           child: NetworkImageWidget(
             height: _topImageHeigth,
             width: double.maxFinite,
-            imageUrl: job.facility!.imageUrl,
+            imageUrl: job.facility!.imageUrl!,
           ),
         ),
         Container(
@@ -127,7 +127,7 @@ class JobsCardWidget extends StatelessWidget {
     return Row(
       children: [
         BadgeWidget(
-          text: job.jobStatus!.jobStatusText,
+          text: job.jobStatus!.jobStatusText!,
           backgroundColor: job.jobStatus!.jobStatusText == "Open"
               ? ThemeColors.statusBadgeAlternativeBackgroundColor
               : ThemeColors.statusBadgeBackgroundColor,
@@ -137,7 +137,7 @@ class JobsCardWidget extends StatelessWidget {
         ),
         SizedBox(width: 8),
         BadgeWidget(
-          text: job.licenseType,
+          text: job.licenseType!,
           backgroundColor: ThemeColors.licenceBadgeBackgroundColor,
           textColor: ThemeColors.licenceBadgeTextColor,
         ),
@@ -148,20 +148,20 @@ class JobsCardWidget extends StatelessWidget {
   Widget _buildFacilityName() => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Text(
-        job.facility!.facName,
+        job.facility!.facName!,
         style: TextStyle(fontSize: 17),
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
       ));
 
   Widget _buildAddress() => Text(
-        (job.facility!.facStreetAddress) +
+        (job.facility!.facStreetAddress!) +
             ", " +
-            (job.facility!.facCity) +
+            (job.facility!.facCity!) +
             ", " +
-            (job.facility!.facStateAbbreviation) +
+            (job.facility!.facStateAbbreviation!) +
             ", " +
-            (job.facility!.facZipCode),
+            (job.facility!.facZipCode!),
         style: TextStyle(fontSize: 13, color: Colors.grey),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
@@ -172,16 +172,20 @@ class JobsCardWidget extends StatelessWidget {
     if (job.jobSpecialties!.length > 1) {
       job.jobSpecialties!.forEach((jobSpecialty) {
         _jobSpecialties.add(BadgeWidget(
-          text: jobSpecialty.specialty!.specialtyAcronym,
-          backgroundColor: Color(int.tryParse("0xFF" +
-              jobSpecialty.specialty!.specialtyColor.replaceAll("#", ""))!),
+          text: jobSpecialty.specialty!.specialtyAcronym!,
+          /// TODO: Specialty Color
+          backgroundColor: ThemeColors.licenceBadgeBackgroundColor,
+          // backgroundColor: Color(int.tryParse("0xFF" +
+          //     jobSpecialty.specialty!.specialtyColor.replaceAll("#", ""))!),
         ));
         _jobSpecialties.add(SizedBox(width: 10));
       });
     } else {
-      Color _backgroundColor = Color(int.tryParse("0xFF" +
-          job.jobSpecialties!.first.specialty!.specialtyColor
-              .replaceAll("#", ""))!);
+      /// TODO: Specialty Color
+      Color _backgroundColor = ThemeColors.licenceBadgeBackgroundColor;
+      // Color _backgroundColor = Color(int.tryParse("0xFF" +
+      //     job.jobSpecialties!.first.specialty!.specialtyColor
+      //         .replaceAll("#", ""))!);
       if (job.jobSpecialties!.first.specialty!.specialtyTitle ==
           "Skilled Nursing") {
         _backgroundColor = Color(0xFFBF4DD6);
@@ -190,7 +194,7 @@ class JobsCardWidget extends StatelessWidget {
         _backgroundColor = Color(0xFFF6A858);
       }
       _jobSpecialties.add(BadgeWidget(
-          text: job.jobSpecialties!.first.specialty!.specialtyTitle,
+          text: job.jobSpecialties!.first.specialty!.specialtyTitle!,
           backgroundColor: _backgroundColor));
     }
     return Padding(
@@ -207,9 +211,9 @@ class JobsCardWidget extends StatelessWidget {
         _iconWithInfo(Image(image: AssetImage('assets/diem.png'), height: 20),
             "Per Diem"),
         _iconWithInfo(Image(image: AssetImage('assets/date.png'), height: 20),
-            job.jobStartDate),
+            job.jobStartDate!),
         _iconWithInfo(Image(image: AssetImage('assets/shift.png'), height: 20),
-            job.jobShift),
+            job.jobShift!),
       ],
     );
   }

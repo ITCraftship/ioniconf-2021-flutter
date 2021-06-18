@@ -10,8 +10,10 @@ abstract class Config {
 
   Config(this.env, this.apiUrl);
 
-  static Future<Config> getConfig(String config, ConfigCallback configFactory) async {
-    final configString = await rootBundle.loadString('config/${config}_config.json');
+  static Future<Config> getConfig(
+      String config, ConfigCallback configFactory) async {
+    final configString =
+        await rootBundle.loadString('config/${config}_config.json');
     final decodedConfig = json.decode(configString) as Map<String, dynamic>;
     return configFactory(
       decodedConfig['env'] as String,

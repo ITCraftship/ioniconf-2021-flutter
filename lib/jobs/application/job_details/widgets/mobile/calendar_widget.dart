@@ -39,8 +39,7 @@ class CalendarWidget extends StatelessWidget {
             weekdayTextStyle: TextStyle(color: Colors.black),
             headerText: 'Jun 2021',
             headerTextStyle: TextStyle(color: Colors.grey, fontSize: 18),
-            leftButtonIcon:
-                Icon(Icons.keyboard_arrow_left, color: Colors.grey),
+            leftButtonIcon: Icon(Icons.keyboard_arrow_left, color: Colors.grey),
             rightButtonIcon:
                 Icon(Icons.keyboard_arrow_right, color: Colors.grey),
             height: 300,
@@ -89,9 +88,9 @@ class CalendarWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(job.jobShift, style: TextStyle(fontSize: 16)),
+                    Text(job.jobShift!, style: TextStyle(fontSize: 16)),
                     SizedBox(height: 8),
-                    Text(job.jobStartDate, style: TextStyle(fontSize: 16)),
+                    Text(job.jobStartDate!, style: TextStyle(fontSize: 16)),
                   ],
                 ),
               ],

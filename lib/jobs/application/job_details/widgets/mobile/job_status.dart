@@ -36,7 +36,7 @@ class JobStatusWidget extends StatelessWidget {
             padding:
                 const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
             child: BadgeWidget(
-              text: job.jobStatus!.jobStatusText,
+              text: job.jobStatus!.jobStatusText!,
               backgroundColor: job.jobStatus!.jobStatusText == "Open"
                   ? ThemeColors.statusBadgeAlternativeBackgroundColor
                   : ThemeColors.statusBadgeBackgroundColor,

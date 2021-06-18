@@ -25,14 +25,14 @@ class ShiftLicenceCard extends StatelessWidget {
         ],
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        _buildElements(title: "Shift Date", widget: Text(job.jobStartDate)),
+        _buildElements(title: "Shift Date", widget: Text(job.jobStartDate!)),
         _buildVerticalDivider(),
-        _buildElements(title: "Shift Time", widget: Text(job.jobShift)),
+        _buildElements(title: "Shift Time", widget: Text(job.jobShift!)),
         _buildVerticalDivider(),
         _buildElements(
           title: "Licence Type",
           widget: BadgeWidget(
-            text: job.licenseType,
+            text: job.licenseType!,
             backgroundColor: ThemeColors.licenceBadgeBackgroundColor,
             textColor: ThemeColors.licenceBadgeTextColor,
           ),

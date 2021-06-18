@@ -5,7 +5,7 @@ class NetworkImageWidget extends StatelessWidget {
   final double width;
   final double height;
   final String imageUrl;
-  
+
   const NetworkImageWidget({
     Key? key,
     required this.width,

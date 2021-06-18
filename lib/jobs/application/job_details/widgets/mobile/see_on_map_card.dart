@@ -77,7 +77,7 @@ class SeeOnMapCard extends StatelessWidget {
           child: NetworkImageWidget(
             height: _topImageHeigth,
             width: double.maxFinite,
-            imageUrl: job.facility!.imageUrl,
+            imageUrl: job.facility!.imageUrl!,
           ),
         ),
         Container(
@@ -132,7 +132,7 @@ class SeeOnMapCard extends StatelessWidget {
   Widget _buildFacilityName() => Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Text(
-        job.facility!.facName,
+        job.facility!.facName!,
         style: TextStyle(fontSize: 17),
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
@@ -144,13 +144,13 @@ class SeeOnMapCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            (job.facility!.facStreetAddress) +
+            (job.facility!.facStreetAddress!) +
                 ", " +
-                (job.facility!.facCity) +
+                (job.facility!.facCity!) +
                 ", " +
-                (job.facility!.facStateAbbreviation) +
+                (job.facility!.facStateAbbreviation!) +
                 ", " +
-                (job.facility!.facZipCode),
+                (job.facility!.facZipCode!),
             style: TextStyle(
                 fontSize: 13, color: ThemeColors.licenceBadgeTextColor),
             maxLines: 1,

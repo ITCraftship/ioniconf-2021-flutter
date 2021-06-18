@@ -89,7 +89,7 @@ class CalendarDesktopWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 24.0, horizontal: 32),
-                      child: Text(job.jobStartDate,
+                      child: Text(job.jobStartDate!,
                           style: TextStyle(
                               fontSize: 16, color: Colors.grey.shade400)),
                     ),
@@ -103,7 +103,7 @@ class CalendarDesktopWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 24.0, horizontal: 32),
-                      child: Text(job.jobShift,
+                      child: Text(job.jobShift!,
                           style: TextStyle(
                               fontSize: 16, color: Colors.grey.shade400)),
                     ),

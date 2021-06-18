@@ -15,7 +15,7 @@ class JobDetailsCubit extends Cubit<JobDetailsState> {
 
   Future<void> initialize({required Job job}) async {
     try {
-      _job = await _jobsRepository.getJob(jobId: job.jobId);
+      _job = await _jobsRepository.getJob(jobId: job.jobId!);
       _buildView();
     } catch (error) {
       _buildError(error.toString());

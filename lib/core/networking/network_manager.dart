@@ -41,8 +41,8 @@ class NetworkManager {
   }
 
   Future<Job> getJob({required String jobId}) async {
-    http.Response _response =
-        await doGet(url: _baseURL + Endpoints.jobs + "/" + jobId +  "/" + Endpoints.detail);
+    http.Response _response = await doGet(
+        url: _baseURL + Endpoints.jobs + "/" + jobId + "/" + Endpoints.detail);
     late Job _job;
     try {
       var _data = jsonDecode(_response.body);

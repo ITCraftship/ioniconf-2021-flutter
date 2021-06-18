@@ -6,14 +6,8 @@ part 'specialty.g.dart';
 @freezed
 class Specialty with _$Specialty {
   factory Specialty({
-    @JsonKey(name: 'specialty_id') int? specialtyId,
-    @Default("") @JsonKey(name: 'specialty_acronym') String specialtyAcronym,
-    @Default("") @JsonKey(name: 'specialty_title') String specialtyTitle,
-    @JsonKey(name: 'specialty_desc') String? specialtyDesc,
-    @Default("") @JsonKey(name: 'specialty_color') String specialtyColor,
-    @JsonKey(name: 'specialty_meta_description')
-        Object? specialtyMetaDescription,
-    @JsonKey(name: 'insert_date') String? insertDate,
+    @JsonKey(name: 'specialty_title') String? specialtyTitle,
+    @JsonKey(name: 'specialty_acronym') String? specialtyAcronym,
   }) = _Specialty;
 
   factory Specialty.fromJson(Map<String, dynamic> json) =>
