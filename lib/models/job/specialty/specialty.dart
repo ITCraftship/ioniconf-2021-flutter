@@ -8,6 +8,7 @@ class Specialty with _$Specialty {
   factory Specialty({
     @JsonKey(name: 'specialty_title') String? specialtyTitle,
     @JsonKey(name: 'specialty_acronym') String? specialtyAcronym,
+    @JsonKey(name: 'specialty_color') String? specialtyColor,
   }) = _Specialty;
 
   factory Specialty.fromJson(Map<String, dynamic> json) =>

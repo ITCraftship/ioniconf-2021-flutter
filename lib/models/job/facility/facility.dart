@@ -15,6 +15,7 @@ class Facility with _$Facility {
     @JsonKey(name: 'image_url') String? imageUrl,
     @JsonKey(name: 'fac_system') Object? facSystem,
     @JsonKey(name: 'no_distance') bool? noDistance,
+    @JsonKey(name: 'fac_number_of_beds') int? facNumberOfBeds
   }) = _Facility;
 
   factory Facility.fromJson(Map<String, dynamic> json) =>

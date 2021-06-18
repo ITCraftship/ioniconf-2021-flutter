@@ -173,19 +173,15 @@ class JobsCardWidget extends StatelessWidget {
       job.jobSpecialties!.forEach((jobSpecialty) {
         _jobSpecialties.add(BadgeWidget(
           text: jobSpecialty.specialty!.specialtyAcronym!,
-          /// TODO: Specialty Color
-          backgroundColor: ThemeColors.licenceBadgeBackgroundColor,
-          // backgroundColor: Color(int.tryParse("0xFF" +
-          //     jobSpecialty.specialty!.specialtyColor.replaceAll("#", ""))!),
+          backgroundColor: Color(int.tryParse("0xFF" +
+              jobSpecialty.specialty!.specialtyColor!.replaceAll("#", ""))!),
         ));
         _jobSpecialties.add(SizedBox(width: 10));
       });
     } else {
-      /// TODO: Specialty Color
-      Color _backgroundColor = ThemeColors.licenceBadgeBackgroundColor;
-      // Color _backgroundColor = Color(int.tryParse("0xFF" +
-      //     job.jobSpecialties!.first.specialty!.specialtyColor
-      //         .replaceAll("#", ""))!);
+      Color _backgroundColor = Color(int.tryParse("0xFF" +
+          job.jobSpecialties!.first.specialty!.specialtyColor!
+              .replaceAll("#", ""))!);
       if (job.jobSpecialties!.first.specialty!.specialtyTitle ==
           "Skilled Nursing") {
         _backgroundColor = Color(0xFFBF4DD6);

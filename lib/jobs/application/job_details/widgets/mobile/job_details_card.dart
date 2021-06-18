@@ -47,11 +47,8 @@ class JobDetailsCard extends StatelessWidget {
             Text("Number of beds",
                 style: TextStyle(color: ThemeColors.licenceBadgeTextColor)),
             SizedBox(height: 10),
-
-            /// TODO: facNumberOfBeds
-            Text("96", style: TextStyle(fontSize: 18)),
-            // Text(job.facility!.facNumberOfBeds!.toString(),
-            //     style: TextStyle(fontSize: 18)),
+            Text(job.facility!.facNumberOfBeds!.toString(),
+                style: TextStyle(fontSize: 18)),
             SizedBox(height: 10),
             Text("Job Instructions",
                 style: TextStyle(color: ThemeColors.licenceBadgeTextColor)),
@@ -75,20 +72,15 @@ class JobDetailsCard extends StatelessWidget {
       job.jobSpecialties!.forEach((jobSpecialty) {
         _jobSpecialties.add(BadgeWidget(
           text: jobSpecialty.specialty!.specialtyAcronym!,
-
-          /// TODO: specialtyColor
-          backgroundColor: ThemeColors.licenceBadgeBackgroundColor,
-          // backgroundColor: Color(int.tryParse("0xFF" +
-          //     jobSpecialty.specialty!.specialtyColor.replaceAll("#", ""))!),
+          backgroundColor: Color(int.tryParse("0xFF" +
+              jobSpecialty.specialty!.specialtyColor!.replaceAll("#", ""))!),
         ));
         _jobSpecialties.add(SizedBox(width: 10));
       });
     } else {
-      /// TODO: specialtyColor
-      Color _backgroundColor = ThemeColors.licenceBadgeBackgroundColor;
-      // Color _backgroundColor = Color(int.tryParse("0xFF" +
-      //     job.jobSpecialties!.first.specialty!.specialtyColor
-      //         .replaceAll("#", ""))!);
+      Color _backgroundColor = Color(int.tryParse("0xFF" +
+          job.jobSpecialties!.first.specialty!.specialtyColor!
+              .replaceAll("#", ""))!);
       if (job.jobSpecialties!.first.specialty!.specialtyTitle ==
           "Skilled Nursing") {
         _backgroundColor = Color(0xFFBF4DD6);
