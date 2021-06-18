@@ -1,4 +1,5 @@
 import 'package:dio/adapter.dart';
+import 'package:dio/adapter_browser.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -16,7 +17,7 @@ Dio configureDio(
       'Accept': 'application/json',
     },
   ));
-  dio.httpClientAdapter = DefaultHttpClientAdapter();
+  dio.httpClientAdapter = kIsWeb ? BrowserHttpClientAdapter() : DefaultHttpClientAdapter();
 
   if (kDebugMode) {
     dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true, requestHeader: true));
