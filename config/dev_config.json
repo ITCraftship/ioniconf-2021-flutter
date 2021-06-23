@@ -1,0 +1,4 @@
+{
+    "env": "dev",
+    "apiUrl": "https://ioniconf-2021-jobs.herokuapp.com/"
+  }
